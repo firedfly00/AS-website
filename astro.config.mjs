@@ -49,9 +49,18 @@ export default defineConfig({
       previewStyles: ['/src/styles/blog.css'],
     }),
   ],
+
   vite: {
-    optimizeDeps: {
-      exclude: ['decap-cms', 'decap-cms-core'],
+    build: {
+      rollupOptions: {
+        external: [
+          'decap-cms',
+          'decap-cms-core',
+          'react',
+          'react-dom',
+          'react-dom/client',
+        ],
+      },
     },
   },
 });
