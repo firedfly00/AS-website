@@ -50,17 +50,29 @@ export default defineConfig({
     }),
   ],
 
-  vite: {
-    build: {
-      rollupOptions: {
-        external: [
-          'decap-cms',
-          'decap-cms-core',
-          'react',
-          'react-dom',
-          'react-dom/client',
-        ],
-      },
+vite: {
+  build: {
+    rollupOptions: {
+      external: [
+        'decap-cms',
+        'decap-cms-core',
+
+        // All Decap CMS backends (we only use git-gateway)
+        'decap-cms-backend-git-gateway',
+        'decap-cms-backend-github',
+        'decap-cms-backend-gitlab',
+        'decap-cms-backend-bitbucket',
+        'decap-cms-backend-azure',
+
+        // React (Decap runtime-only)
+        'react',
+        'react-dom',
+        'react-dom/client',
+
+        // Node built-ins accidentally pulled in
+        'path',
+        'fs',
+      ],
     },
   },
-});
+},
