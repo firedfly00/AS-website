@@ -6,15 +6,12 @@ export default defineConfig({
   integrations: [
     DecapCMS({
       config: {
-        // Use Netlify’s “Git Gateway” authentication and target our default branch
         backend: {
           name: 'git-gateway',
-          branch: 'latest',
+          branch: 'main',
         },
-        // Configure where our media assets are stored & served from
         media_folder: 'public/assets/blog',
         public_folder: '/assets/blog',
-        // Configure the content collections
         collections: [
           {
             name: 'posts',
@@ -52,4 +49,9 @@ export default defineConfig({
       previewStyles: ['/src/styles/blog.css'],
     }),
   ],
+  vite: {
+    optimizeDeps: {
+      exclude: ['decap-cms', 'decap-cms-core'],
+    },
+  },
 });
